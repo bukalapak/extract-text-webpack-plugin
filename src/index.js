@@ -113,6 +113,12 @@ class ExtractTextPlugin {
     compiler.plugin('this-compilation', (compilation) => {
       const extractCompilation = new ExtractTextPluginCompilation();
       compilation.plugin('normal-module-loader', (loaderContext, module) => {
+        console.log('=============');
+        console.log(loaderContext);
+        console.log('=============');
+        console.log(module);
+        console.log('=============');
+
         loaderContext[NS] = (content, opt) => {
           if (options.disable) { return false; }
           if (!Array.isArray(content) && content != null) { throw new Error(`Exported value was not extracted as an array: ${JSON.stringify(content)}`); }
